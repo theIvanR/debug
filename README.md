@@ -57,5 +57,10 @@ When it finishes you will be greeted with:
 Successfully built torch-2.7.1a0+gite2d141d-cp311-cp311-win_amd64.whl
 ```
 
-## 3: Enjoy
-
+## 3: Test and Enjoy
+- install wheel via pip from /dist
+- if something complains about a missing dll like AOTI, run dependency walker (modern one). Usual suspects will be: mkl_intel_thread.2.dll and cupti64_2022.3.0.dll. Plop them into your install folder.
+- 
+- libiomp5md dll
+- 
+- 
