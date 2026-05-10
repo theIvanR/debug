@@ -16,9 +16,16 @@ Instructions:
 - install cudnn 8.7.0 (drag and drop into nvidia)
 
 1: Set up environment
-- open anaconda prompt
-- create venv:
+- open anaconda prompt and create new venv
   ```bash
   conda create -n py311 python=3.11
   conda activate py311
+  ```
+- fetch pytorch and install dependencies:
+  ```bash
+  git config --system core.longpaths true
+  git clone --recursive https://github.com/pytorch/pytorch.git --branch v2.7.1
+
+  cd pytorch
+  pip install -r requirements.txt
   ```
