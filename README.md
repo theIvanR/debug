@@ -33,4 +33,24 @@
   cd pytorch
   pip install -r requirements.txt
   ```
-## 2: Build Pytorch
+## 2: Build Pytorch from source
+```bash
+@echo off
+
+REM Initialize v142 x64 builder and oneAPI
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 -vcvars_ver=14.29
+call "C:\Program Files (x86)\Intel\oneAPI\2025.3\oneapi-vars.bat"
+
+REM Update Build
+pip install build
+
+cd pytorch
+
+REM Build Wheel
+set USE_MKLDNN=1
+set USE_CUDNN=1
+set "TORCH_CUDA_ARCH_LIST=3.5"
+python -m build --wheel --no-isolation
+```
+
+## 3: Enjoy
