@@ -1,9 +1,7 @@
-Instructions:
-- display driver 472.50
-- cuda 11.8 (without display driver!)
-- cudnn 8.7.0
-- oneAPI newest
-- visual studio code any with v142 compatibility
+# 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
+- **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
+- **Stack:** Pytorch **2.7.1**, CUDA **11.8**, cuDNN **8.7.0**, Visual Studio **2022**, **Intel oneAPI**, **Python 3.11**.  
+- **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
 
 ---
 0: configure environment
