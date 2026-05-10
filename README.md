@@ -35,7 +35,21 @@
   ```
 ## 2: Build Pytorch from source
 ```bash
+@echo off
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 -vcvars_ver=14.29
 
+REM Point this at the actual MKL directory under oneAPI, not the oneAPI root
+set "MKLROOT=C:\Program Files (x86)\Intel\oneAPI\mkl\latest"
+set "CMAKE_INCLUDE_PATH=%MKLROOT%\include"
+set "LIB=%MKLROOT%\lib;%LIB%"
+
+python -m pip install -U build
+
+cd pytorch
+set "USE_MKLDNN=1"
+set "USE_CUDNN=1"
+set "TORCH_CUDA_ARCH_LIST=3.5"
+python -m build --wheel --no-isolation
 ```
 
 ## 3: Enjoy
