@@ -14,9 +14,9 @@
 - install cudnn 8.7.0 (drag and drop into nvidia)
 
 **Strongly recommended**
-- download and run debug_system to test if all prerequesites work. (output should confirm compiler, cuda, cudnn, and oneapi working)
+- download debug_system to test if all prerequesites work. (output should confirm compiler, cuda, cudnn, and oneapi working)
   ```bash
-  ../test_env_cfg.cmd
+  ./test_env_cfg.cmd
   ```
   
 ## 1: Set up environment
