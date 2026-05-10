@@ -6,17 +6,19 @@ Instructions:
 - visual studio code any with v142 compatibility
 
 ---
-Example generic builder: 
+0: configure environment
+- install git
+- install miniconda
+- install visual studio (any) supporting v142, recommended 2022 with backwards tool.
+- install oneAPI (latest)
+- install driver 472.50
+- install cuda 11.8
+- install cudnn 8.7.0 (drag and drop into nvidia)
 
-```bash
-call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 -vcvars_ver=14.29
-
-nvcc test_cuda_sm35.cu ^
-  -o test_cuda_sm35.exe ^
-  -arch=sm_35 ^
-  -I "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\include" ^
-  -L "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\lib\x64" ^
-  -lcudnn -lcudart
-```
-
-
+1: Set up environment
+- open anaconda prompt
+- create venv:
+  ```bash
+  conda create -n py311 python=3.11
+  conda activate py311
+  ```
