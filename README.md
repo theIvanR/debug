@@ -13,7 +13,7 @@
 - nvidia cuda 11.8
 - nvidia cudnn 8.7.0 (drag and drop into nvidia)
 
-** Strongly recommended: run the debug environment script to test if install and toolkits work**
+**Strongly recommended: run the debug environment script to test if install and toolkits work**
   
 ## 1: Set up environment
 - open anaconda prompt (administrator) and create new environment for building
