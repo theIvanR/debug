@@ -32,3 +32,7 @@ Successfully built torch-2.7.1a0+gite2d141d-cp311-cp311-win_amd64.whl
 ## 3: Install Wheel and Enjoy!
 - install wheel via pip from "pytorch/dist"
 - test via: ```python -c "import torch; print('torch',torch.__version__,'cuda',torch.version.cuda,'ok',torch.cuda.is_available(),'devices',torch.cuda.device_count()); [print(i, torch.cuda.get_device_name(i)) for i in range(torch.cuda.device_count())]; print(torch.randn(2,2,device='cuda'))"```
+
+## 4: Rebuilding and troubleshooting
+- when rebuilding, recommended to delete all build artifacts (egg, /dist, and /build)
+- troubleshoot one flag at a time and use Dependency Walker liberally, consult chatgpt and similar. 
