@@ -38,10 +38,10 @@
   @echo off
   setlocal EnableExtensions
   
-  REM 1) Start from MSVC only
+  REM 1) Initialize v142 compatible
   call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 -vcvars_ver=14.29
   
-  REM 2) Pick ONE CUDA toolkit and ONE MKL/OpenMP source
+  REM 2) Set Tool Paths
   set "CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8"
   set "PATH=%CUDA_PATH%\bin;%PATH%" 
   
