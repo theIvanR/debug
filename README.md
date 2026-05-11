@@ -37,7 +37,7 @@
 ** NOTE: cupti is broken with this version (from kinetico) and aoti custom ops wll require you to copy a dll if you want to do profiling. **
 
 ### A: No MKL
-```bash
+  ```bash
   @echo off
   setlocal EnableExtensions
   
@@ -61,7 +61,7 @@
   
   python -m build --wheel --no-isolation
   endlocal
-```
+  ```
 
 ### B: MKL 
 
