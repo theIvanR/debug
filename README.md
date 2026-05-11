@@ -35,21 +35,29 @@
   ```
 ## 2: Build Pytorch from source
 ```bash
-@echo off
-call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 -vcvars_ver=14.29
-
-REM Point this at the actual MKL directory under oneAPI, not the oneAPI root
-set "MKLROOT=C:\Program Files (x86)\Intel\oneAPI\mkl\latest"
-set "CMAKE_INCLUDE_PATH=%MKLROOT%\include"
-set "LIB=%MKLROOT%\lib;%LIB%"
-
-python -m pip install -U build
-
-cd pytorch
-set "USE_MKLDNN=1"
-set "USE_CUDNN=1"
-set "TORCH_CUDA_ARCH_LIST=3.5"
-python -m build --wheel --no-isolation
+  @echo off
+  setlocal EnableExtensions
+  
+  REM 1) Start from MSVC only
+  call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 -vcvars_ver=14.29
+  
+  REM 2) Pick ONE CUDA toolkit and ONE MKL/OpenMP source
+  set "CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8"
+  set "PATH=%CUDA_PATH%\bin;%PATH%" 
+  
+  python -m pip install -U build
+  
+  cd /d C:\Users\%USERNAME%\source\pytorch
+  
+  set "USE_CUDA=1"
+  set "USE_CUDNN=1"
+  set "USE_KINETO=0"
+  set "USE_MKLDNN=0"
+  
+  set "TORCH_CUDA_ARCH_LIST=3.5"
+  
+  python -m build --wheel --no-isolation
+  endlocal
 ```
 
 When it finishes you will be greeted with: 
@@ -58,9 +66,5 @@ Successfully built torch-2.7.1a0+gite2d141d-cp311-cp311-win_amd64.whl
 ```
 
 ## 3: Test and Enjoy
-- install wheel via pip from /dist
-- if something complains about a missing dll like AOTI, run dependency walker (modern one). Usual suspects will be: mkl_intel_thread.2.dll and cupti64_2022.3.0.dll. Plop them into your install folder.
-- 
-- libiomp5md dll
-- 
-- 
+- install wheel via pip from "pytorch/dist"
+- test via: ```python -c "import torch; print(torch.randn(2,2).cuda())"```
