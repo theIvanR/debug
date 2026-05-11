@@ -1,4 +1,4 @@
-## 🏗️ PyTorch on Windows for Older GPUS (Kepler +)
+## 🏗️ Modern Pytorch on Kepler+ GPUS on Windows
 - **Goal:** Run PyTorch on Windows with Kepler GPUs (Tesla K40c, compute capability **3.5**).  
 - **Stack:** Pytorch **2.7.1**, CUDA **11.8**, cuDNN **8.7.0**, Visual Studio **2022**, **Intel oneAPI**, **Python 3.11**.  
 - **Arch List** CUDA 3.5;3.7;5.0;5.2;6.0;6.1;7.0;7.5
