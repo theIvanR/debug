@@ -34,6 +34,9 @@
   pip install -r requirements.txt
   ```
 ## 2: Build Pytorch from source
+** NOTE: cupti is broken with this version (from kinetico) and aoti custom ops wll require you to copy a dll if you want to do profiling. **
+
+### A: No MKL
 ```bash
   @echo off
   setlocal EnableExtensions
@@ -60,12 +63,13 @@
   endlocal
 ```
 
+### B: MKL 
+
 When it finishes you will be greeted with: 
 ```bash
 Successfully built torch-2.7.1a0+gite2d141d-cp311-cp311-win_amd64.whl
 ```
 
-NOTE: cupti is broken with this version (from kinetico) and aoti custom ops wll require you to copy a dll if you want to do profiling. 
 
 ## 3: Test and Enjoy
 - install wheel via pip from "pytorch/dist"
