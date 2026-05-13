@@ -1,16 +1,20 @@
 # 2: QC script
 
-# Basic run on single machine
-python qc_from_db.py
+# Single machine (no sharding)
+python qc_robust.py --db ia_crawler.db --output clean_jobs.jsonl
 
-# Specify custom DB and output
-python qc_from_db.py --db ia_crawler.db --output my_clean.json --workers 16
+# Worker 0 of 4 (on machine A)
+python qc_robust.py --shard 0 --total-shards 4 --state-dir /mnt/nfs/qc_state
 
-# Distributed run (machine 0 of 4)
-python qc_from_db.py --shard 0 --total-shards 4 --output clean_jobs.json
+# Worker 1 of 4 (on machine B)
+python qc_robust.py --shard 1 --total-shards 4 --state-dir /mnt/nfs/qc_state
 
-# Machine 1 of 4
-python qc_from_db.py --shard 1 --total-shards 4 --output clean_jobs.json
-
-# After all shards finish, merge them:
-jq -s 'add' clean_jobs_shard*.json > clean_jobs.json
+# Merge all JSONL shards into a single JSON array
+python -c "
+import json, glob
+jobs = []
+for f in glob.glob('clean_jobs_shard*.jsonl'):
+    with open(f) as inf:
+        jobs.extend(json.loads(line) for line in inf)
+json.dump(jobs, open('clean_jobs.json', 'w'))
+"
